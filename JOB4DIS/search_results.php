@@ -150,10 +150,25 @@ mysqli_close($conn);
                              <?php if (!empty($job['suitable_disability_types'])): ?>
                                 <div class="job-disability-tags">
                                     <?php 
+                                    $disability_icon_map = [
+                                        'Mental' => 'Mental.png',
+                                        'Tuna Mental' => 'Mental.png',
+                                        'Grahita' => 'Grahita.png',
+                                        'Tuna Grahita' => 'Grahita.png',
+                                        'Netra' => 'Netra.png',
+                                        'Tuna Netra' => 'Netra.png',
+                                        'Tuna Netra Parsial' => 'Netra.png',
+                                        'Rungu Wicara' => 'Rungu Wicara.png',
+                                        'Rungu' => 'Rungu Wicara.png',
+                                        'Tuna Rungu' => 'Rungu Wicara.png',
+                                        'Daksa' => 'Daksa.png',
+                                        'Tuna Daksa' => 'Daksa.png'
+                                    ];
                                     $disability_types = explode(',', $job['suitable_disability_types']);
                                     foreach ($disability_types as $type): 
                                         $type = trim($type);
-                                        $icon_filename = $type . '.png';
+                                        if (empty($type)) continue;
+                                        $icon_filename = $disability_icon_map[$type] ?? ($type . '.png');
                                     ?>
                                         <span class="disability-tag">
                                             <img src="images/<?php echo htmlspecialchars($icon_filename); ?>" alt="Ikon <?php echo htmlspecialchars($type); ?>">

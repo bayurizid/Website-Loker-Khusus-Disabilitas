@@ -105,7 +105,7 @@ if ($result_testimonials && mysqli_num_rows($result_testimonials) > 0) {
         <section class="hero-section">
             <div class="container hero-container">
                 <div class="hero-text">
-                    <h1>Cari Kerja <span class="highlight">#makinmudah</span><br>Pake JOB4DIS</h1>
+                    <h1>Cari Kerja <span class="highlight">#MakinMudah</span><br>Dengan JOB4DIS</h1>
                     <form class="search-form-hero" action="all_jobs.php" method="GET">
                         <div class="search-input-group">
                             <input type="text" name="keyword" placeholder="Masukkan kata kunci (mis: admin, marketing)" aria-label="Kata Kunci Pekerjaan">
@@ -200,10 +200,25 @@ if ($result_testimonials && mysqli_num_rows($result_testimonials) > 0) {
                                 <?php if (!empty($job['suitable_disability_types'])): ?>
                                     <div class="job-disability-tags">
                                         <?php 
+                                        $disability_icon_map = [
+                                            'Mental' => 'Mental.png',
+                                            'Tuna Mental' => 'Mental.png',
+                                            'Grahita' => 'Grahita.png',
+                                            'Tuna Grahita' => 'Grahita.png',
+                                            'Netra' => 'Netra.png',
+                                            'Tuna Netra' => 'Netra.png',
+                                            'Tuna Netra Parsial' => 'Netra.png',
+                                            'Rungu Wicara' => 'Rungu Wicara.png',
+                                            'Rungu' => 'Rungu Wicara.png',
+                                            'Tuna Rungu' => 'Rungu Wicara.png',
+                                            'Daksa' => 'Daksa.png',
+                                            'Tuna Daksa' => 'Daksa.png'
+                                        ];
                                         $disability_types = explode(',', $job['suitable_disability_types']);
                                         foreach ($disability_types as $type): 
                                             $type = trim($type);
-                                            $icon_filename = $type . '.png';
+                                            if (empty($type)) continue;
+                                            $icon_filename = $disability_icon_map[$type] ?? ($type . '.png');
                                         ?>
                                             <span class="disability-tag">
                                                 <img src="images/<?php echo htmlspecialchars($icon_filename); ?>" alt="Ikon <?php echo htmlspecialchars($type); ?>">

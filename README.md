@@ -1,58 +1,55 @@
-# JOB4DIS - Website Portal Lowongan Kerja Khusus Disabilitas
+# JOB4DIS - Website Portal Lowongan Kerja Khusus Disabilitas (CodeIgniter 4)
 
-JOB4DIS adalah platform portal lowongan kerja inklusif yang dirancang untuk menghubungkan penyandang disabilitas dengan perusahaan-perusahaan yang ramah disabilitas di Indonesia.
+JOB4DIS adalah platform portal lowongan kerja inklusif berbasis **CodeIgniter 4 (MVC)** yang dirancang untuk menghubungkan penyandang disabilitas dengan perusahaan-perusahaan yang ramah dan terbuka terhadap talenta disabilitas di Indonesia.
 
 ---
 
-## 🚀 Cara Menjalankan Proyek (Plug & Play)
-
-Proyek ini telah dikonfigurasi dengan fitur **Auto-Setup & Auto-Migration**. Anda tidak perlu melakukan konfigurasi database yang rumit.
+## 🚀 Cara Menjalankan Proyek
 
 ### 1. Prasyarat
-- **Laragon** / **XAMPP** (PHP 7.4 - 8.x dan MySQL)
-- Web Browser
+- **PHP 8.1+** (disarankan PHP 8.2 / 8.3)
+- **Composer**
+- **MySQL / MariaDB** (via Laragon / XAMPP)
 
 ---
 
-### 2. Langkah Menjalankan
-1. **Clone repository** ini ke folder `www` (Laragon) atau `htdocs` (XAMPP):
+### 2. Langkah Cepat (Quick Start)
+
+1. **Pastikan MySQL Aktif** (Klik **Start All** di Laragon / XAMPP).
+2. **Setup Database & Migrasi CI4**:
+   Jalankan perintah berikut di terminal root proyek:
    ```bash
-   git clone https://github.com/bayurizid/Website-Loker-Khusus-Disabilitas.git
+   php spark migrate
+   php spark db:seed MainSeeder
    ```
-2. **Start Laragon / XAMPP**:
-   - Pastikan service **Apache/Nginx** dan **MySQL** dalam status **Running (Start All)**.
-3. **Buka di Browser**:
-   - Akses: [http://localhost/Website-Loker-Khusus-Disabilitas/JOB4DIS/](http://localhost/Website-Loker-Khusus-Disabilitas/JOB4DIS/)
-   - ✨ **Database `job4dis_db`, seluruh tabel, dan data demo awal akan dibuat secara otomatis saat halaman pertama kali dibuka!**
+3. **Jalankan Web Server**:
+   ```bash
+   php spark serve
+   ```
+   Akses di browser: [http://localhost:8080](http://localhost:8080)
 
----
-
-### 3. Opsi Migrasi Manual (Jika Diperlukan)
-Jika Anda ingin me-reset atau menjalankan migrasi secara manual:
-- **Via Terminal**:
-  ```bash
-  cd JOB4DIS
-  php migrate.php
-  ```
-- **Via Browser**:
-  Buka: `http://localhost/Website-Loker-Khusus-Disabilitas/JOB4DIS/migrate.php`
-- **Via Import phpMyAdmin**:
-  Import file `JOB4DIS/database.sql` ke phpMyAdmin.
+   *(Atau melalui Apache Laragon di: `http://localhost/Website-Loker-Khusus-Disabilitas/public/`)*
 
 ---
 
 ## 🔑 Akun Demo Siap Pakai
 
-| Peran (Role) | Username | Password | Keterangan |
+| Peran (Role) | Username / Email | Password | Keterangan |
 |---|---|---|---|
-| **Pencari Kerja** | `seeker_demo` | `seeker123` | Profil pelamar disabilitas |
-| **Perusahaan** | `company_demo` | `company123` | Dashboard pasang lowongan |
+| **Pencari Kerja** | `seeker_demo` / `budi@example.com` | `seeker123` | Profil pelamar disabilitas (Tuna Daksa) |
+| **Perusahaan Mitra** | `company_demo` / `hr@bri.co.id` | `company123` | Dashboard kelola & pasang loker (PT BRI) |
 
 ---
 
-## 📂 Struktur Direktori Utama
-- `JOB4DIS/config/db.php` : Konfigurasi koneksi dan auto-migration engine.
-- `JOB4DIS/database.sql` : Skema dan data awal database.
-- `JOB4DIS/migrate.php` : Skrip migrasi mandiri.
-- `JOB4DIS/images/` : Aset ikon disabilitas (`Daksa.png`, `Netra.png`, dsb), logo mitra, dan gambar testimoni.
-- `JOB4DIS/uploads/` : Folder penyimpanan file resume & cover letter pelamar.
+## 🏗️ Struktur Arsitektur CI4
+- `app/Controllers/` :
+  - `Home.php` (Beranda & lowongan terpopuler)
+  - `Jobs.php` (Filter multi-kategori, pencarian, detail loker, submit lamaran, AJAX bookmark)
+  - `Auth.php` (Login, register seeker, register company, logout)
+  - `Dashboard.php` (Ringkasan pelamar, edit profil, riwayat lamaran, bookmark)
+  - `Company.php` (Landing perusahaan, pasang loker baru, manajemen pelamar)
+- `app/Models/` : `UserModel`, `CompanyModel`, `JobModel`, `JobApplicationModel`, `SavedJobModel`, `TestimonialModel`.
+- `app/Filters/` : `AuthFilter`, `CompanyFilter`.
+- `app/Views/` : Template layout modular (`layout/main.php`, `layout/dashboard_layout.php`).
+- `public/` : Aset publik (`css/`, `js/`, `images/`, `uploads/`).
+- `app/Database/` : File migrasi resmi dan seeder.

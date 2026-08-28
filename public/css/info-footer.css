@@ -1,0 +1,128 @@
+
+.info-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    border-top: 1px solid var(--border-color); 
+    color: var(--text-color);
+    margin-top: 60px;
+}
+
+.info-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.info-about {
+    flex: 2;
+    min-width: 300px;
+}
+
+.info-logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.info-description {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #555;
+    max-width: 450px;
+}
+
+.info-socials {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.info-socials a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: #777;
+    font-size: 1.1em;
+    transition: all 0.2s ease;
+}
+
+.info-socials a:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+    transform: translateY(-3px);
+}
+
+.info-gov-partners {
+    flex: 1;
+    min-width: 250px;
+}
+
+.info-gov-partners h4 {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.gov-logos {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.gov-logo-item {
+    display: block;
+    width: 150px;  
+    height: 150px; 
+    padding: 5px; 
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.gov-logo-item:hover {
+    transform: translateY(-5px);
+}
+
+.gov-logos img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .info-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .info-about, .info-gov-partners {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-description {
+        text-align: center;
+    }
+    .gov-logos {
+        justify-content: center;
+    }
+}
+
+footer { 
+    background-color: #343a40; 
+    color: #adb5bd; 
+    text-align: center; 
+    padding: 25px 0; 
+    margin-top: 0;
+}
+footer p { 
+    margin: 0; 
+    font-size: 0.9em; 
+}
